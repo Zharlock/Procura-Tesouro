@@ -7,7 +7,7 @@ void obterCoordenadas(int *x, int *y) {
     int nivel = 0;
     while (nivel < 1 || nivel > 3) /*um ciclo while caso o  valor introduzido pelo utilizador esteja fora dos parametro*/
     {
-        printf("Escolha o nível de dificuldade (1, 2 ou 3):\n");
+        printf("Escolha o nivel de dificuldade (1, 2 ou 3):\n");
         scanf("%d", &nivel);
         switch (nivel) /*Verifica a opção escolhida e atribui as coordenadas*/
             {
@@ -24,7 +24,7 @@ void obterCoordenadas(int *x, int *y) {
                 *y = 15;
                 break;
             default:
-                printf("Nível inválido! Tente novamente.\n");
+                printf("Nivel invalido! Tente novamente.\n");
                 break;
             }
     }
@@ -43,11 +43,11 @@ char **criarMatriz(int x, int y) {
 }
 void coordenadasinicio (char**matriz, int coluna, int linha) /* Função Para Perguntar ao utilizador onde pretente começar.*/
     {
-        printf("Pretende inciar onde, 1ª Coordenada ");
+        printf("Pretende iniciar onde, 1ª Coordenada ");
         scanf("%d",&linha);
-        printf("Pretende inciar onde, 2ª Coordenada ");
+        printf("Pretende iniciar onde, 2ª Coordenada ");
         scanf("%d",&coluna);
-        printf("vai começar na Posição seguinte: \n");
+        printf("vai comecar na Posição seguinte: \n");
         matriz[linha][coluna] = '&';
         return matriz;
     }

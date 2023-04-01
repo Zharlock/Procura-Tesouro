@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "dificuldade.h"
 
-  int main() {
+int main() {
     int x, y, linha, coluna;
     obterCoordenadas(&x, &y);
     char **matriz = criarMatriz(x, y);
