@@ -9,7 +9,7 @@
 int main() 
     {
         int x = 0, y = 0;
-        int linha_te, coluna_te, rowplayer, clplayer;
+        int linha_te, coluna_te, rowplayer, clplayer, count;
         char direcao;
     
         int nivel = obterCoordenadas(&x, &y);
@@ -30,10 +30,11 @@ int main()
                 updatetabuleiro(matriz, x, y, rowplayer, clplayer);
                 distance = get_distance(rowplayer, clplayer, linha_te, coluna_te);
                 printf("Distância até o tesouro: %d\n", distance);
+                 count = count+1;
             }
 
         // O jogador encontrou o tesouro
-        printf("Você encontrou o tesouro!\n");
+        printf("Parabéns!! Chegou ao Tesouro em %d passos!! Ganho 100.000.000\n" , count);
         return 0;
 
     }
