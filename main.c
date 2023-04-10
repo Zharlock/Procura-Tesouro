@@ -1,15 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "dificuldade.h"
-#include "tesouro.h"
+#include <time.h>
+#include <math.h>
+#include "library.h"
 
+// Projeto da Disciplina Programação II (liguagem C), baseado num jogo de caça ao tesouro. Projeto elaborado por Carlos e João.
 
-int main() {
-    int x = 0, y = 0;
-    int nivel = obterCoordenadas(&x, &y);
-    char **matriz = criarMatriz(x, y);
-    matriz = coordenadasinicio(matriz, x, y);
-    tesourogen(matriz, 0, 0, nivel); // Passa a dificuldade para o tesourogen
-    updatetabuleiro(matriz, x, y);
-    return 0;
-}
+int main() 
+    {
+        int x = 0, y = 0;
+        int linha_te, coluna_te, rowplayer, clplayer, count;
+        char direcao;
+    
+        int nivel = obterCoordenadas(&x, &y);
+        char **matriz = criarMatriz(x, y);
+        tesourogen(&linha_te, &coluna_te, nivel);
+        coordenadasinicio(&rowplayer, &clplayer);
+        updatetabuleiro(matriz, x, y, rowplayer, clplayer);
+
+        //chama a função get_distance e calcula a distancia entre o tesouro e a posição do jogador
+
+        int distance = get_distance(rowplayer, clplayer, linha_te, coluna_te); 
+
+        // motor do jogo
+        while (distance !=0) 
+            {
+                posicao(matriz, direcao, &rowplayer, &clplayer, linha_te, coluna_te, x , y);
+                updatetabuleiro(matriz, x, y, rowplayer, clplayer);
+                distance = get_distance(rowplayer, clplayer, linha_te, coluna_te);
+                printf("Distância até o tesouro: %d\n", distance);
+                 count = count+1;
+            }
+
+        // O jogador encontrou o tesouro
+        printf("Parabéns!! Chegou ao Tesouro em %d passos!! Ganho 100.000.000\n" , count);
+        
+        return 0;
+    }
