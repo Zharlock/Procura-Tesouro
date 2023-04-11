@@ -5,7 +5,7 @@
 
 // devolve as coordenadas do Tessouro!
 
-int tesourogen(int * linha_tesouro, int * coluna_tesouro, int nivel) 
+int tesourogen(int * linha_tesouro, int * coluna_tesouro, int nivel)
 {
     srand(time(NULL));
     int range;
@@ -62,11 +62,11 @@ int obterCoordenadas(int *x, int *y) {
 char **criarMatriz(int x, int y) // Função para criar tabuleiro com base na dificuldade.
     {
         char **matriz = (char **)malloc(x * sizeof(char *));
-        for (int i = 0; i < x; i++) 
+        for (int i = 0; i < x; i++)
             {
                 matriz[i] = (char *)malloc(y * sizeof(char));
 
-        for (int j = 0; j < y; j++) 
+        for (int j = 0; j < y; j++)
             {
                 matriz[i][j] = 'X';
             }
@@ -80,74 +80,233 @@ int coordenadasinicio(int * linha_player, int * coluna_player) //Função Para P
             scanf("%d", linha_player);
         printf("Pretende iniciar onde, 2ª Coordenada ");
             scanf("%d", coluna_player);
-        printf("vai comecar na Posição seguinte: \n"); // Temos que verificar se vale a pena incluir
+        printf("vai comecar na Posição seguinte:(%d,%d) \n", *linha_player,*coluna_player); // mostra as coordenadas iniciais do jogador
     }
-
-
-void updatetabuleiro(char **matriz, int x, int y, int rowplayer, int clplayer) {
-    
-    
-    int i, j;
-    for (i = 0; i < x; i++) {
-        for (j = 0; j < y; j++) {
-            if (i == rowplayer && j == clplayer) {
-                printf(" & ");
-            } else if (i == rowplayer - 1 && j == clplayer) {
-                printf(" - ");
-            } else if (i == rowplayer + 1 && j == clplayer) {
-                printf(" - ");
-            } else if (i == rowplayer && j == clplayer - 1) {
-                printf(" - ");
-            } else if (i == rowplayer && j == clplayer + 1) {
-                printf(" - ");
-            } else {
-                printf(" X ");
+void tabuleiro(char**matriz, int x, int y, int rowplayer, int clplayer, int direcao) //mostra o tabuleiro pela primeira vez!!
+    {
+        printf("\n");
+        for(int i = 0; i < x; i++)
+            {
+         for(int j = 0; j < y; j++)
+            {                           
+            if(i == rowplayer && j == clplayer)
+            {
+                printf("& ");
             }
-        }
+            else if (i == rowplayer - 1 && j == clplayer)
+                {
+                    printf("- ");
+                }
+            else if (i == rowplayer + 1 && j == clplayer)
+                {
+                     printf("- ");
+                }
+            else if (i == rowplayer && j == clplayer - 1)
+                {
+                    printf("- ");
+                }
+            else if (i == rowplayer && j == clplayer + 1)
+                {
+                    printf("- ");
+                }
+            else
+                {
+                printf("%c ", matriz[i][j]);
+                }
+    }
+                printf("\n");
+            }
         printf("\n");
     }
-}
-void posicao(char **matriz, char direcao, int *linha_p, int *col_p, int linha_t, int co_t, int x, int y) 
+
+void updatetabuleiro(char**matriz, int x, int y, int rowplayer, int clplayer, int  direcao) //Update da tabela
     {
-        printf("Indique a direcao que pretende seguir:\n"); 
+    printf("%d", direcao);
+            if( direcao == 2)
+                {
+                printf("\n");
+                    for(int i = 0; i < x; i++)
+                    {
+                        for(int j = 0; j < y; j++)
+                        {
+                            if(i == rowplayer && j == clplayer)
+                            {
+                            printf("& ");
+                            }
+                            else if (i == rowplayer - 1 && j == clplayer)
+                            {
+                            printf("~ ");
+                            }
+                            else if (i == rowplayer + 1 && j == clplayer)
+                            {
+                            printf("- ");
+                            }
+                            else if (i == rowplayer && j == clplayer - 1)
+                            {
+                            printf("- ");
+                            }
+                            else if (i == rowplayer && j == clplayer + 1)
+                            {
+                            printf("- ");
+                            }
+                            else
+                            {
+                            printf("%c ", matriz[i][j]);
+                            }
+                        }
+                    printf("\n");
+                    }
+                }    
+        else if (direcao == 8)
+            {
+             printf("\n"); 
+               for(int i = 0; i < x; i++)
+                {
+                     for(int j = 0; j < y; j++)
+                    {
+                        if(i == rowplayer && j == clplayer)
+                        {
+                            printf("& ");
+                        }
+                      else if (i == rowplayer - 1 && j == clplayer)
+                        {
+                                printf("- ");
+                        }
+                      else if (i == rowplayer + 1 && j == clplayer)
+                        {
+                             printf("~ ");
+                        }
+                      else if (i == rowplayer && j == clplayer - 1)
+                        {
+                            printf("- ");
+                        }
+                      else if (i == rowplayer && j == clplayer + 1)
+                        {
+                            printf("- ");
+                        }
+                      else
+                        {
+                            printf("%c ", matriz[i][j]);
+                        }
+                    }
+                        printf("\n");
+                }
+            }
+            else if (direcao == 4)
+            {
+             printf("\n"); 
+               for(int i = 0; i < x; i++)
+                {
+                     for(int j = 0; j < y; j++)
+                    {
+                        if(i == rowplayer && j == clplayer)
+                        {
+                            printf("& ");
+                        }
+                      else if (i == rowplayer - 1 && j == clplayer)
+                        {
+                                printf("- ");
+                        }
+                      else if (i == rowplayer + 1 && j == clplayer)
+                        {
+                             printf("- ");
+                        }
+                      else if (i == rowplayer && j == clplayer - 1)
+                        {
+                            printf("- ");
+                        }
+                      else if (i == rowplayer && j == clplayer + 1)
+                        {
+                            printf("~ ");
+                        }
+                      else
+                        {
+                            printf("%c ", matriz[i][j]);
+                        }
+                    }
+                        printf("\n");
+                }
+            }
+            else if (direcao == 6)
+            {
+             printf("\n"); 
+               for(int i = 0; i < x; i++)
+                {
+                     for(int j = 0; j < y; j++)
+                    {
+                        if(i == rowplayer && j == clplayer)
+                        {
+                            printf("& ");
+                        }
+                      else if (i == rowplayer - 1 && j == clplayer)
+                        {
+                                printf("- ");
+                        }
+                      else if (i == rowplayer + 1 && j == clplayer)
+                        {
+                             printf("- ");
+                        }
+                      else if (i == rowplayer && j == clplayer - 1)
+                        {
+                            printf("~ ");
+                        }
+                      else if (i == rowplayer && j == clplayer + 1)
+                        {
+                            printf("- ");
+                        }
+                      else
+                        {
+                            printf("%c ", matriz[i][j]);
+                        }
+                    }
+                        printf("\n");
+                }
+            }
+    printf("\n");
+    }
+
+
+void posicao(char **matriz, int *direcao, int *linha_p, int *col_p, int linha_t, int co_t, int x, int y)
+    {
+        printf("Indique a direcao que pretende seguir:\n");
         printf("2 - baixo\n8 - Cima\n4 - Esquerda\n6 - Direita\n0 - Desistir\n");
-        scanf(" %c", &direcao);
-    
-    while (1) 
-    {
-        if (direcao == '2' && *linha_p + 1 < x)
-                {
-                    matriz[*linha_p][*col_p] = 'O';
-                    *linha_p += 1;
-                    break;
-                }
-            else if (direcao == '8' && *linha_p - 1 >= 0)
-                {
-                    matriz[*linha_p][*col_p] = 'O';
-                    *linha_p -= 1;
-                    break;
-                } 
-            else if (direcao == '4' && *col_p - 1 >= 0)
-                {
-                    matriz[*linha_p][*col_p] = 'O';
-                    *col_p -= 1;
-                    break;
-                } 
-            else if (direcao == '6' && *col_p + 1 < y)
-                {
-                    matriz[*linha_p][*col_p] = 'O';
-                    *col_p += 1;
-                    break;
-                }
-            else if (direcao == '0')
+        scanf("%d", direcao);
+       
+   while (1)
+   {
+        if (*direcao == 2 && *linha_p + 1 < x)
+        {
+            matriz[*linha_p][*col_p] = 'O';
+            *linha_p += 1;
+            break;
+        }
+        else if (*direcao == 8 && *linha_p - 1 >= 0)
+        {
+            matriz[*linha_p][*col_p] = 'O';
+            *linha_p -= 1;
+            break;
+        }
+        else if (*direcao == 4 && *col_p - 1 >= 0)
+        {
+            matriz[*linha_p][*col_p] = 'O';
+            *col_p -= 1;
+            break;
+        }
+        else if (*direcao == 6 && *col_p + 1 < y)
+        {
+            matriz[*linha_p][*col_p] = 'O';
+            *col_p += 1;
+            break;
+        }
+            else if (*direcao == '0')
                 {
                     printf("Paciencia... O tesouro estava na posição (%d,%d)  e valia 1.000,00 €",linha_t, co_t);
                     exit(1);
                 }
-            else 
+            else
                 {
                     printf("Direcao invalida. Escolha novamente:\n");
-                    scanf(" %c", &direcao);
+                    scanf("%d", direcao);
                 }
     }
     matriz[*linha_p][*col_p] = '&';
