@@ -298,7 +298,7 @@ void posicao(char **matriz, int *direcao, int *linha_p, int *col_p, int linha_t,
             *col_p += 1;
             break;
         }
-            else if (*direcao == '0')
+            else if (*direcao == 0)
                 {
                     printf("Paciencia... O tesouro estava na posição (%d,%d)  e valia 1.000,00 €",linha_t, co_t);
                     exit(1);
